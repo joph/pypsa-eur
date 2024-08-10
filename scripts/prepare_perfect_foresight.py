@@ -7,7 +7,6 @@ Concats pypsa networks of single investment periods to one network.
 """
 
 import logging
-import re
 
 import numpy as np
 import pandas as pd
@@ -251,7 +250,7 @@ def adjust_stores(n):
     n.stores.loc[cyclic_i, "e_cyclic_per_period"] = True
     n.stores.loc[cyclic_i, "e_cyclic"] = False
     # non cyclic store assumptions
-    non_cyclic_store = ["co2", "co2 stored", "solid biomass", "biogas", "Li ion"]
+    non_cyclic_store = ["co2", "co2 stored", "solid biomass", "biogas", "EV battery"]
     co2_i = n.stores[n.stores.carrier.isin(non_cyclic_store)].index
     n.stores.loc[co2_i, "e_cyclic_per_period"] = False
     n.stores.loc[co2_i, "e_cyclic"] = False
